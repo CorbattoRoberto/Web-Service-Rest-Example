@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+
+    <changeSet author="Roberto Corbatto" id="2023-09-20-03-customer-order-create">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="customer_order"/>
+            </not>
+        </preConditions>
+        <comment>customer order create</comment>
+        <createTable tableName="customer_order">
+            <column name="id" type="INT" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="customer_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="order_date" type="DATE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="notes" type="VARCHAR(5000)"/>
+        </createTable>
+
+        <addForeignKeyConstraint baseColumnNames="customer_id" baseTableName="customer_order"
+                                 constraintName="fk_customer_order_on_customer" referencedColumnNames="id"
+                                 referencedTableName="customer"/>
+        <rollback>
+            <dropTable tableName="customer_order"/>
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>

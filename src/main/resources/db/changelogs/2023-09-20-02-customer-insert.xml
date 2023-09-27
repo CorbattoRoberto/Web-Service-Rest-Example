@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+
+    <changeSet author="Roberto Corbatto" id="2023-09-20-02-customer-insert">
+        <preConditions onFail="HALT">
+                <tableExists tableName="customer"/>
+        </preConditions>
+        <insert tableName="customer">
+            <column name="first_name" value="Roberto"/>
+            <column name="last_name" value="Corbatto"/>
+            <column name="address" value="via Caboto 6"/>
+            <column name="city" value="Trieste"/>
+            <column name="email" value="corbatto@testmail.com"/>
+            <column name="notes" value="Nessun problema con i pagamenti"/>
+        </insert>
+        <insert tableName="customer">
+            <column name="first_name" value="Mario"/>
+            <column name="last_name" value="Rossi"/>
+            <column name="address" value="via Garibaldi 100"/>
+            <column name="city" value="Milano"/>
+            <column name="email" value="rossi@testmail.com"/>
+            <column name="notes" value="Ancora nessun ordine eseguito"/>
+        </insert>
+
+    </changeSet>
+
+
+</databaseChangeLog>
