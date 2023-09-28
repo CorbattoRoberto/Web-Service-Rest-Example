@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -27,6 +28,11 @@ public class CustomerServiceImpl implements CustomerService {
   @Override
   public void deleteById(Integer idCustomer) {
     customerRepository.deleteById(idCustomer);
+  }
+
+  @Override
+  public Customer findById(Integer idCustomer) {
+    return customerRepository.findById(idCustomer).orElse(Customer.builder().build());
   }
 
 }
