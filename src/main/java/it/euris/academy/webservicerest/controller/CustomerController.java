@@ -14,13 +14,18 @@ public class CustomerController {
 
   CustomerService customerService;
 
-  @GetMapping()
+  @GetMapping
   public List<Customer> getAllCustomers() {
     return customerService.findAll();
   }
 
-  @PostMapping()
+  @PostMapping
   public Customer saveCustomer(@RequestBody Customer customer) {
+    return customerService.save(customer);
+  }
+
+  @PutMapping
+  public Customer updateCustomer(@RequestBody Customer customer){
     return customerService.save(customer);
   }
 
