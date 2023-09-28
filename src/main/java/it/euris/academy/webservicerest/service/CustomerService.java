@@ -9,4 +9,5 @@ public interface CustomerService {
 
   Customer save(Customer customer);
 
+  void deleteById(Integer idCustomer);
 }

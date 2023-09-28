@@ -29,6 +29,10 @@ public class CustomerController {
     return customerService.save(customer);
   }
 
+  @DeleteMapping("/{id}")
+  public void deleteCustomer(@PathVariable("id") Integer idCustomer) {
+    customerService.deleteById(idCustomer);
+  }
 
 
 }
