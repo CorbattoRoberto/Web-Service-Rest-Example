@@ -15,25 +15,25 @@ public class Customer {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id")
-  Integer id;
+  private Integer id;
 
   @Column(name = "first_name" , nullable = false)
-  String firstName;
+  private String firstName;
 
   @Column(name = "last_name", nullable = false)
-  String lastName;
+  private String lastName;
 
   @Column(name = "address", nullable = false)
-  String address;
+  private String address;
 
   @Column(name = "city", nullable = false)
-  String city;
+  private String city;
 
   @Column(name = "email", nullable = false)
-  String email;
+  private String email;
 
   @Column(name = "notes")
-  String notes;
+  private String notes;
 
 }
 
