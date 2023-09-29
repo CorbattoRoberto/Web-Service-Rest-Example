@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+
+    <changeSet author="Roberto Corbatto" id="2023-09-27-04-product-insert">
+        <preConditions onFail="HALT">
+                <tableExists tableName="product"/>
+        </preConditions>
+        <insert tableName="product">
+            <column name="name" value="Giacca ciclismo - uomo"/>
+            <column name="description" value="Calda giacca isolante ibrida adatta sia ai ciclisti su strada esperti o agli amanti dello sterrato."/>
+            <column name="price" value="100.00"/>
+        </insert>
+        <insert tableName="product">
+            <column name="name" value="Scarpe trail running - donna"/>
+            <column name="description" value="Suola ad aderenza multidirezionale migliora la trazione su diverse superfici."/>
+            <column name="price" value="70.50"/>
+        </insert>
+        <insert tableName="product">
+            <column name="name" value="Zaino escursionismo"/>
+            <column name="description" value="Colorazione a sorpresa!"/>
+            <column name="price" value="75.00"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

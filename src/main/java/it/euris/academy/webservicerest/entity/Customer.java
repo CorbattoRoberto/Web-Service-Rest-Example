@@ -35,5 +35,8 @@ public class Customer {
   @Column(name = "notes")
   private String notes;
 
+  @Column(name = "active")
+  private Boolean active;
+
 }
 

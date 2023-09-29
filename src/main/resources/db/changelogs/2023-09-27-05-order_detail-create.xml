@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+
+    <changeSet author="Roberto Corbatto" id="2023-09-27-05-order_detail-create">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="order_detail"/>
+            </not>
+        </preConditions>
+        <comment>order_detail create</comment>
+        <createTable tableName="order_detail">
+            <column name="id" type="INT" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="order_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="product_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint baseColumnNames="order_id" baseTableName="order_detail"
+                                 constraintName="fk_order_detail_on_customer_order" referencedColumnNames="id"
+                                 referencedTableName="customer_order"/>
+
+        <addForeignKeyConstraint baseColumnNames="product_id" baseTableName="order_detail"
+                                 constraintName="fk_order_detail_on_product" referencedColumnNames="id"
+                                 referencedTableName="product"/>
+
+        <rollback>
+            <dropTable tableName="order_detail"/>
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>

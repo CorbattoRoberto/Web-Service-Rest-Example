@@ -7,5 +7,9 @@
     <include file="db/changelogs/2023-09-20-02-customer-insert.xml"/>
     <include file="db/changelogs/2023-09-20-03-customer-order-create.xml"/>
     <include file="db/changelogs/2023-09-20-04-shipment-create.xml"/>
+    <include file="db/changelogs/2023-09-27-02-customer-update.xml"/>
+    <include file="db/changelogs/2023-09-27-03-product-create.xml"/>
+    <include file="db/changelogs/2023-09-27-04-product-insert.xml"/>
+    <include file="db/changelogs/2023-09-27-05-order_detail-create.xml"/>
 
 </databaseChangeLog>
