@@ -1,5 +1,8 @@
 package it.euris.academy.webservicerest.entity;
 
+import it.euris.academy.webservicerest.dto.CustomerDTO;
+import it.euris.academy.webservicerest.dto.archetype.Dto;
+import it.euris.academy.webservicerest.dto.archetype.Model;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -10,7 +13,7 @@ import lombok.*;
 @AllArgsConstructor
 @Entity
 @Table(name = "customer")
-public class Customer {
+public class Customer implements Model {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,6 +40,19 @@ public class Customer {
 
   @Column(name = "active")
   private Boolean active;
+
+  @Override
+  public Dto toDto() {
+    return CustomerDTO
+        .builder()
+        .firstName(firstName)
+        .lastName(lastName)
+        .address(address)
+        .city(city)
+        .email(email)
+        .notes(notes)
+        .build();
+  }
 
 }
 
