@@ -1,6 +1,6 @@
 package it.euris.academy.webservicerest.service.impl;
 
-import it.euris.academy.webservicerest.entity.Customer;
+import it.euris.academy.webservicerest.data.entity.Customer;
 import it.euris.academy.webservicerest.exception.IdMustBeNullException;
 import it.euris.academy.webservicerest.exception.IdMustNotBeNullException;
 import it.euris.academy.webservicerest.repository.CustomerRepository;
@@ -9,7 +9,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor

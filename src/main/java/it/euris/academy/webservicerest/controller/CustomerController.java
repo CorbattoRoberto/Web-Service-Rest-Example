@@ -1,8 +1,8 @@
 package it.euris.academy.webservicerest.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
-import it.euris.academy.webservicerest.dto.CustomerDTO;
-import it.euris.academy.webservicerest.entity.Customer;
+import it.euris.academy.webservicerest.data.dto.CustomerDTO;
+import it.euris.academy.webservicerest.data.entity.Customer;
 import it.euris.academy.webservicerest.service.CustomerService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;

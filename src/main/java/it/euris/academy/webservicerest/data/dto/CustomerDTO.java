@@ -1,7 +1,7 @@
-package it.euris.academy.webservicerest.dto;
+package it.euris.academy.webservicerest.data.dto;
 
-import it.euris.academy.webservicerest.dto.archetype.Dto;
-import it.euris.academy.webservicerest.entity.Customer;
+import it.euris.academy.webservicerest.data.dto.archetype.Dto;
+import it.euris.academy.webservicerest.data.entity.Customer;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

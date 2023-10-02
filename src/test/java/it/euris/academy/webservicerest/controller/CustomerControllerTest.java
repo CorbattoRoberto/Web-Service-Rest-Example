@@ -1,7 +1,7 @@
 package it.euris.academy.webservicerest.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import it.euris.academy.webservicerest.entity.Customer;
+import it.euris.academy.webservicerest.data.entity.Customer;
 import it.euris.academy.webservicerest.service.CustomerService;
 import it.euris.academy.webservicerest.utility.TestSupport;
 import org.junit.jupiter.api.Test;

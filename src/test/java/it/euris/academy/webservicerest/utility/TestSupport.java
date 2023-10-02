@@ -1,6 +1,6 @@
 package it.euris.academy.webservicerest.utility;
 
-import it.euris.academy.webservicerest.entity.Customer;
+import it.euris.academy.webservicerest.data.entity.Customer;
 
 public class TestSupport {
 

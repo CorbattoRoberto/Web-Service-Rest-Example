@@ -1,6 +1,6 @@
 package it.euris.academy.webservicerest.service;
 
-import it.euris.academy.webservicerest.entity.Customer;
+import it.euris.academy.webservicerest.data.entity.Customer;
 import it.euris.academy.webservicerest.repository.CustomerRepository;
 import it.euris.academy.webservicerest.utility.TestSupport;
 import org.assertj.core.api.recursive.comparison.ComparingSnakeOrCamelCaseFields;

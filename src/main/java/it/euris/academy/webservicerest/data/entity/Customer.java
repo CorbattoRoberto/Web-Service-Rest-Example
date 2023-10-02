@@ -1,7 +1,7 @@
-package it.euris.academy.webservicerest.entity;
+package it.euris.academy.webservicerest.data.entity;
 
-import it.euris.academy.webservicerest.dto.CustomerDTO;
-import it.euris.academy.webservicerest.dto.archetype.Model;
+import it.euris.academy.webservicerest.data.dto.CustomerDTO;
+import it.euris.academy.webservicerest.data.dto.archetype.Model;
 import jakarta.persistence.*;
 import lombok.*;
 
