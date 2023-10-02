@@ -11,12 +11,12 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("/customer")
+@RequestMapping("/customers")
 public class CustomerController {
 
   CustomerService customerService;
 
-  @GetMapping
+  @GetMapping("/v1")
   @Operation(description = """
       This method is used to retrieve all the customers from the database<br>
       """)
@@ -24,25 +24,25 @@ public class CustomerController {
     return customerService.findAll();
   }
 
-  @PostMapping
+  @PostMapping("/v1")
   public Customer saveCustomer(@RequestBody CustomerDTO customerDTO) {
     Customer customer = (Customer) customerDTO.toModel();
     customer.setActive(true);
     return customerService.save(customer);
   }
 
-  @PutMapping
+  @PutMapping("/v1")
   public Customer updateCustomer(@RequestBody CustomerDTO customerDTO){
     Customer customer = (Customer) customerDTO.toModel();
     return customerService.save(customer);
   }
 
-  @DeleteMapping("/{id}")
+  @DeleteMapping("/v1/{id}")
   public void deleteCustomer(@PathVariable("id") Integer idCustomer) {
     customerService.deleteById(idCustomer);
   }
 
-  @GetMapping("/{id}")
+  @GetMapping("/v1/{id}")
   public Customer getCustomerById(@PathVariable("id") Integer idCustomer) {
     return customerService.findById(idCustomer);
   }

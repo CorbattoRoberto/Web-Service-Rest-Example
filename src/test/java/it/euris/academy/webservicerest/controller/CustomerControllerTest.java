@@ -54,7 +54,7 @@ class CustomerControllerTest {
 
     when(customerService.findAll()).thenReturn(customers);
 
-    mockMvc.perform(MockMvcRequestBuilders.get("/customer"))
+    mockMvc.perform(MockMvcRequestBuilders.get("/customers/v1"))
         .andDo(print())
         .andExpect(status().isOk())
         .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
@@ -83,7 +83,7 @@ class CustomerControllerTest {
 
     when(customerService.save(any())).thenReturn(customer);
 
-    mockMvc.perform(post("/customer")
+    mockMvc.perform(post("/customers/v1")
             .contentType(MediaType.APPLICATION_JSON)
             .accept(MediaType.APPLICATION_JSON)
             .content(objectMapper.writeValueAsString(customer.toDto())))

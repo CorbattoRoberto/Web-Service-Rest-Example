@@ -15,12 +15,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/customer",
+							"raw": "{{host}}/{{customer}}/{{version}}",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
-								"customer"
+								"{{customer}}",
+								"{{version}}"
 							]
 						}
 					},
@@ -41,12 +42,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/customer",
+							"raw": "{{host}}/{{customer}}/{{version}}",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
-								"customer"
+								"{{customer}}",
+								"{{version}}"
 							]
 						}
 					},
@@ -59,7 +61,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\": 6,\r\n    \"firstName\": \"Giuseppe\",\r\n    \"lastName\": \"Verdi\",\r\n    \"address\": \"via Traviata 16\",\r\n    \"city\": \"Milano\",\r\n    \"email\": \"verdi@testmail.com\",\r\n    \"notes\": \"Nuovo cliente\"\r\n}",
+							"raw": "{\r\n    \"id\": 15,\r\n    \"firstName\": \"Giuseppe\",\r\n    \"lastName\": \"Verdi\",\r\n    \"address\": \"via Traviata 16\",\r\n    \"city\": \"Milano\",\r\n    \"email\": \"verdi@testmail.com\",\r\n    \"notes\": \"Nuovo cliente\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -67,12 +69,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/customer",
+							"raw": "{{host}}/{{customer}}/{{version}}",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
-								"customer"
+								"{{customer}}",
+								"{{version}}"
 							]
 						}
 					},
@@ -84,13 +87,14 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/customer/5",
+							"raw": "{{host}}/{{customer}}/{{version}}/9",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
-								"customer",
-								"5"
+								"{{customer}}",
+								"{{version}}",
+								"9"
 							]
 						}
 					},
@@ -102,12 +106,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/customer/1",
+							"raw": "{{host}}/{{customer}}/{{version}}/1",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
-								"customer",
+								"{{customer}}",
+								"{{version}}",
 								"1"
 							]
 						}
@@ -129,12 +134,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{host}}/customer/12/order",
+							"raw": "{{host}}/{{customer}}/{{version}}/12/order",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
-								"customer",
+								"{{customer}}",
+								"{{version}}",
 								"12",
 								"order"
 							]
@@ -157,6 +163,38 @@
 				}
 			},
 			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "customer",
+			"value": "customers",
+			"type": "string"
+		},
+		{
+			"key": "version",
+			"value": "v1",
+			"type": "string"
 		}
 	]
 }
