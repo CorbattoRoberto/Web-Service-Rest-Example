@@ -3,6 +3,7 @@ package it.euris.academy.webservicerest.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import it.euris.academy.webservicerest.entity.Customer;
 import it.euris.academy.webservicerest.service.CustomerService;
+import it.euris.academy.webservicerest.utility.TestSupport;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -36,20 +37,7 @@ class CustomerControllerTest {
   @Test
   void shouldGetOneCustomer() throws Exception {
 
-    String firstName = "Mario";
-    String lastName = "Rossi";
-
-    Customer customer = Customer
-        .builder()
-        .id(1)
-        .firstName(firstName)
-        .lastName(lastName)
-        .address("via Garibaldi 100")
-        .city("Milano")
-        .email("rossi@testmail.com")
-        .notes("Ancora nessun ordine eseguito")
-        .build();
-
+    Customer customer = TestSupport.getCustomer(1);
     List<Customer> customers = List.of(customer);
 
     when(customerService.findAll()).thenReturn(customers);
@@ -60,26 +48,14 @@ class CustomerControllerTest {
         .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
         .andExpect(jsonPath("$").isArray())
         .andExpect(jsonPath("$.length()").value(1))
-        .andExpect(jsonPath("$[0].firstName").value(firstName))
-        .andExpect(jsonPath("$[0].lastName").value(lastName));
+        .andExpect(jsonPath("$[0].firstName").value(customer.getFirstName()))
+        .andExpect(jsonPath("$[0].lastName").value(customer.getLastName()));
   }
 
   @Test
   void shouldInsertACustomer() throws Exception {
 
-    String firstName = "Mario";
-    String lastName = "Rossi";
-
-    Customer customer = Customer
-        .builder()
-        .id(1)
-        .firstName(firstName)
-        .lastName(lastName)
-        .address("via Garibaldi 100")
-        .city("Milano")
-        .email("rossi@testmail.com")
-        .notes("Ancora nessun ordine eseguito")
-        .build();
+    Customer customer = TestSupport.getCustomer(1);
 
     when(customerService.save(any())).thenReturn(customer);
 
@@ -90,11 +66,8 @@ class CustomerControllerTest {
         .andDo(print())
         .andExpect(status().isOk())
         .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
-        .andExpect(jsonPath("$.firstName").value(firstName))
-        .andExpect(jsonPath("$.lastName").value(lastName));
+        .andExpect(jsonPath("$.firstName").value(customer.getFirstName()))
+        .andExpect(jsonPath("$.lastName").value(customer.getLastName()));
   }
-
-
-
 
 }
