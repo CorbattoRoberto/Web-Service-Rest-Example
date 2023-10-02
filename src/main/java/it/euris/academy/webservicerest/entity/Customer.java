@@ -38,7 +38,8 @@ public class Customer implements Model {
   private String notes;
 
   @Column(name = "active")
-  private Boolean active;
+  @Builder.Default
+  private Boolean active = true;
 
   @Override
   public CustomerDTO toDto() {

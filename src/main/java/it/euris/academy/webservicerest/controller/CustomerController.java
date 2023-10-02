@@ -26,14 +26,13 @@ public class CustomerController {
 
   @PostMapping("/v1")
   public CustomerDTO saveCustomer(@RequestBody CustomerDTO customerDTO) {
-    Customer customer = (Customer) customerDTO.toModel();
-    customer.setActive(true);
+    Customer customer = customerDTO.toModel();
     return customerService.save(customer).toDto();
   }
 
   @PutMapping("/v1")
   public CustomerDTO updateCustomer(@RequestBody CustomerDTO customerDTO){
-    Customer customer = (Customer) customerDTO.toModel();
+    Customer customer = customerDTO.toModel();
     return customerService.save(customer).toDto();
   }
 
