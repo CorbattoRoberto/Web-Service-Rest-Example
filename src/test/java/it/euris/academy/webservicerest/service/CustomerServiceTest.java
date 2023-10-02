@@ -66,8 +66,6 @@ class CustomerServiceTest {
     Integer id = 12;
 
     doNothing().when(customerRepository).deleteById(anyInt());
-
-    // Non necessario ma alternativo al when precedente
     when(customerRepository.findById(id)).thenReturn(Optional.empty());
     assertTrue(customerService.deleteById(id));
     Mockito.verify(customerRepository, times(1)).deleteById(id);
