@@ -20,21 +20,21 @@ public class CustomerController {
   @Operation(description = """
       This method is used to retrieve all the customers from the database<br>
       """)
-  public List<Customer> getAllCustomers() {
-    return customerService.findAll();
+  public List<CustomerDTO> getAllCustomers() {
+    return customerService.findAll().stream().map(Customer::toDto).toList();
   }
 
   @PostMapping("/v1")
-  public Customer saveCustomer(@RequestBody CustomerDTO customerDTO) {
+  public CustomerDTO saveCustomer(@RequestBody CustomerDTO customerDTO) {
     Customer customer = (Customer) customerDTO.toModel();
     customer.setActive(true);
-    return customerService.save(customer);
+    return customerService.save(customer).toDto();
   }
 
   @PutMapping("/v1")
-  public Customer updateCustomer(@RequestBody CustomerDTO customerDTO){
+  public CustomerDTO updateCustomer(@RequestBody CustomerDTO customerDTO){
     Customer customer = (Customer) customerDTO.toModel();
-    return customerService.save(customer);
+    return customerService.save(customer).toDto();
   }
 
   @DeleteMapping("/v1/{id}")
@@ -43,8 +43,8 @@ public class CustomerController {
   }
 
   @GetMapping("/v1/{id}")
-  public Customer getCustomerById(@PathVariable("id") Integer idCustomer) {
-    return customerService.findById(idCustomer);
+  public CustomerDTO getCustomerById(@PathVariable("id") Integer idCustomer) {
+    return customerService.findById(idCustomer).toDto();
   }
 
 }

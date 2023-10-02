@@ -29,7 +29,7 @@ public class CustomerDTO implements Dto {
   private String notes;
 
   @Override
-  public Model toModel() {
+  public Customer toModel() {
 
     return Customer
         .builder()

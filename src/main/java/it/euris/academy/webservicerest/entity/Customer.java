@@ -1,7 +1,6 @@
 package it.euris.academy.webservicerest.entity;
 
 import it.euris.academy.webservicerest.dto.CustomerDTO;
-import it.euris.academy.webservicerest.dto.archetype.Dto;
 import it.euris.academy.webservicerest.dto.archetype.Model;
 import jakarta.persistence.*;
 import lombok.*;
@@ -42,7 +41,7 @@ public class Customer implements Model {
   private Boolean active;
 
   @Override
-  public Dto toDto() {
+  public CustomerDTO toDto() {
     return CustomerDTO
         .builder()
         .firstName(firstName)
