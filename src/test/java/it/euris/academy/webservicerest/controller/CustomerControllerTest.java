@@ -86,7 +86,7 @@ class CustomerControllerTest {
     mockMvc.perform(post("/customer")
             .contentType(MediaType.APPLICATION_JSON)
             .accept(MediaType.APPLICATION_JSON)
-            .content(objectMapper.writeValueAsString(customer)))
+            .content(objectMapper.writeValueAsString(customer.toDto())))
         .andDo(print())
         .andExpect(status().isOk())
         .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
