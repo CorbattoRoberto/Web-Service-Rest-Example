@@ -15,6 +15,8 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
@@ -67,13 +69,8 @@ class CustomerServiceTest {
 
     // Non necessario ma alternativo al when precedente
     when(customerRepository.findById(id)).thenReturn(Optional.empty());
-
-    customerService.deleteById(id);
-    //act+assert
-//    assertTrue(customerService.deleteById(id));
-
+    assertTrue(customerService.deleteById(id));
     Mockito.verify(customerRepository, times(1)).deleteById(id);
   }
-
 
 }

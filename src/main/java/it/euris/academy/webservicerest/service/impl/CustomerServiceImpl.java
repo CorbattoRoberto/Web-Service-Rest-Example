@@ -39,8 +39,9 @@ public class CustomerServiceImpl implements CustomerService {
   }
 
   @Override
-  public void deleteById(Integer idCustomer) {
+  public Boolean deleteById(Integer idCustomer) {
     customerRepository.deleteById(idCustomer);
+    return customerRepository.findById(idCustomer).isEmpty();
   }
 
   @Override
