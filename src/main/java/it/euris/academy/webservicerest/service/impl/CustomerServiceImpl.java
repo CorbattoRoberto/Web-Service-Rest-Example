@@ -1,6 +1,8 @@
 package it.euris.academy.webservicerest.service.impl;
 
 import it.euris.academy.webservicerest.entity.Customer;
+import it.euris.academy.webservicerest.exception.IdMustBeNullException;
+import it.euris.academy.webservicerest.exception.IdMustNotBeNullException;
 import it.euris.academy.webservicerest.repository.CustomerRepository;
 import it.euris.academy.webservicerest.service.CustomerService;
 import lombok.AllArgsConstructor;
@@ -21,7 +23,18 @@ public class CustomerServiceImpl implements CustomerService {
   }
 
   @Override
-  public Customer save(Customer customer) {
+  public Customer insert(Customer customer) {
+    if(customer.getId() != null){
+      throw new IdMustBeNullException();
+    }
+    return customerRepository.save(customer);
+  }
+
+  @Override
+  public Customer update(Customer customer) {
+    if(customer.getId() == null){
+      throw new IdMustNotBeNullException();
+    }
     return customerRepository.save(customer);
   }
 
