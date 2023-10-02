@@ -1,12 +1,13 @@
 package it.euris.academy.webservicerest.dto;
 
 import it.euris.academy.webservicerest.dto.archetype.Dto;
-import it.euris.academy.webservicerest.dto.archetype.Model;
 import it.euris.academy.webservicerest.entity.Customer;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import static it.euris.academy.webservicerest.utility.DataConversionUtils.stringToInteger;
 
 @Data
 @NoArgsConstructor
@@ -14,7 +15,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class CustomerDTO implements Dto {
 
-  private Integer id;
+  private String id;
 
   private String firstName;
 
@@ -33,6 +34,7 @@ public class CustomerDTO implements Dto {
 
     return Customer
         .builder()
+        .id(stringToInteger(id))
         .firstName(firstName)
         .lastName(lastName)
         .address(address)

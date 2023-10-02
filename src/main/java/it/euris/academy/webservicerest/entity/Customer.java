@@ -5,6 +5,8 @@ import it.euris.academy.webservicerest.dto.archetype.Model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import static it.euris.academy.webservicerest.utility.DataConversionUtils.numberToString;
+
 @Builder
 @Getter
 @Setter
@@ -45,6 +47,7 @@ public class Customer implements Model {
   public CustomerDTO toDto() {
     return CustomerDTO
         .builder()
+        .id(numberToString(id))
         .firstName(firstName)
         .lastName(lastName)
         .address(address)
