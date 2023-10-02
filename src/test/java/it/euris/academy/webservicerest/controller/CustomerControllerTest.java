@@ -57,7 +57,7 @@ class CustomerControllerTest {
 
     Customer customer = TestSupport.getCustomer(1);
 
-    when(customerService.save(any())).thenReturn(customer);
+    when(customerService.insert(any())).thenReturn(customer);
 
     mockMvc.perform(post("/customers/v1")
             .contentType(MediaType.APPLICATION_JSON)

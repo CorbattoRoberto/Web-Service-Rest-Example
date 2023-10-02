@@ -49,11 +49,11 @@ class CustomerServiceTest {
   @Test
   void shouldInsertACustomer(){
 
-    Customer customer = TestSupport.getCustomer(1);
+    Customer customer = TestSupport.getCustomer(null);
 
     when(customerRepository.save(any())).thenReturn(customer);
 
-    Customer returnedCustomer = customerService.save(customer);
+    Customer returnedCustomer = customerService.insert(customer);
     assertThat(returnedCustomer.getFirstName())
         .isEqualTo(customer.getFirstName());
   }
