@@ -1,9 +1,13 @@
 package it.euris.academy.webservicerest.data.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import it.euris.academy.webservicerest.data.dto.CustomerDTO;
 import it.euris.academy.webservicerest.data.dto.archetype.Model;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static it.euris.academy.webservicerest.utility.DataConversionUtils.numberToString;
 
@@ -42,6 +46,10 @@ public class Customer implements Model {
   @Column(name = "active")
   @Builder.Default
   private Boolean active = true;
+
+  @Builder.Default
+  @OneToMany(mappedBy="customer", fetch = FetchType.EAGER)
+  private List<CustomerOrder> customerOrders = new ArrayList<>();
 
   @Override
   public CustomerDTO toDto() {
