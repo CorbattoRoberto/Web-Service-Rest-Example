@@ -11,5 +11,6 @@
     <include file="db/changelogs/2023-09-27-03-product-create.xml"/>
     <include file="db/changelogs/2023-09-27-04-product-insert.xml"/>
     <include file="db/changelogs/2023-09-27-05-order_detail-create.xml"/>
+    <include file="db/changelogs/2023-10-02-01-customer-order-alter.xml"/>
 
 </databaseChangeLog>
