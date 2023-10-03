@@ -1,6 +1,8 @@
 package it.euris.academy.webservicerest.service;
 
 import it.euris.academy.webservicerest.data.entity.Customer;
+import it.euris.academy.webservicerest.exception.IdMustBeNullException;
+import it.euris.academy.webservicerest.exception.IdMustNotBeNullException;
 import it.euris.academy.webservicerest.repository.CustomerRepository;
 import it.euris.academy.webservicerest.utility.TestSupport;
 import org.assertj.core.api.recursive.comparison.ComparingSnakeOrCamelCaseFields;
@@ -15,6 +17,8 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import static org.mockito.ArgumentMatchers.any;
@@ -58,6 +62,41 @@ class CustomerServiceTest {
     Customer returnedCustomer = customerService.insert(customer);
     assertThat(returnedCustomer.getFirstName())
         .isEqualTo(customer.getFirstName());
+  }
+
+  @Test
+  void shouldNotInsertAnyCustomer(){
+
+    Customer customer = TestSupport.getCustomer(1);
+    when(customerRepository.save(any())).thenReturn(customer);
+
+    assertThrows(IdMustBeNullException.class, () -> customerService.insert(customer));
+
+    assertThatThrownBy(() -> customerService.insert(customer))
+        .isInstanceOf(IdMustBeNullException.class);
+
+  }
+
+  @Test
+  void shouldUpdateACustomer(){
+
+    Customer customer = TestSupport.getCustomer(1);
+
+    when(customerRepository.save(any())).thenReturn(customer);
+
+    Customer returnedCustomer = customerService.update(customer);
+    assertThat(returnedCustomer.getFirstName())
+        .isEqualTo(customer.getFirstName());
+  }
+
+  @Test
+  void shouldNotUpdateAnyCustomer(){
+
+    Customer customer = TestSupport.getCustomer(null);
+    when(customerRepository.save(any())).thenReturn(customer);
+
+    assertThatThrownBy(() -> customerService.update(customer))
+        .isInstanceOf(IdMustNotBeNullException.class);
   }
 
   @Test
