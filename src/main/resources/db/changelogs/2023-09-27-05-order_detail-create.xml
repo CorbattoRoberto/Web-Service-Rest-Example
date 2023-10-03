@@ -14,15 +14,15 @@
         </preConditions>
         <comment>order_detail create</comment>
         <createTable tableName="order_detail">
-            <column name="id" type="INT" autoIncrement="true">
-                <constraints primaryKey="true"/>
-            </column>
             <column name="order_id" type="INT">
-                <constraints nullable="false"/>
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ORDER_DETAIL"/>
             </column>
             <column name="product_id" type="INT">
-                <constraints nullable="false"/>
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ORDER_DETAIL"/>
             </column>
+
+            <column name="items_number" type="INT" defaultValueNumeric="0" />
+            <column name="notes" type="VARCHAR(5000)"/>
         </createTable>
 
         <addForeignKeyConstraint baseColumnNames="order_id" baseTableName="order_detail"
