@@ -23,6 +23,10 @@
             <column name="product_id" type="INT">
                 <constraints nullable="false"/>
             </column>
+
+            <column name="item_number" type="INT" defaultValueNumeric="0" />
+            <column name="notes" type="VARCHAR(5000)"/>
+
         </createTable>
 
         <addForeignKeyConstraint baseColumnNames="order_id" baseTableName="order_detail"
