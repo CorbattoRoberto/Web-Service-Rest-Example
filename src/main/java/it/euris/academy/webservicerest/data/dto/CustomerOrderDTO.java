@@ -7,8 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import static it.euris.academy.webservicerest.utility.DataConversionUtils.stringToInteger;
-import static it.euris.academy.webservicerest.utility.DataConversionUtils.stringToLocalDateTime;
+import static it.euris.academy.webservicerest.utility.DataConversionUtils.*;
 
 @Data
 @NoArgsConstructor
@@ -20,6 +19,8 @@ public class CustomerOrderDTO implements Dto {
 
   private String orderDate;
 
+  private String shipmentType;
+
   private String notes;
 
   @Override
@@ -28,6 +29,7 @@ public class CustomerOrderDTO implements Dto {
         .builder()
         .id(stringToInteger(id))
         .orderDate(stringToLocalDateTime(orderDate))
+        .shipmentType(stringToShipmentType(shipmentType))
         .notes(notes)
         .build();
   }

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import it.euris.academy.webservicerest.data.dto.CustomerOrderDTO;
 import it.euris.academy.webservicerest.data.dto.archetype.Model;
+import it.euris.academy.webservicerest.data.enums.ShipmentType;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -11,8 +12,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import static it.euris.academy.webservicerest.utility.DataConversionUtils.localDateTimeToString;
-import static it.euris.academy.webservicerest.utility.DataConversionUtils.numberToString;
+import static it.euris.academy.webservicerest.utility.DataConversionUtils.*;
 
 @Builder
 @Getter
@@ -35,9 +35,12 @@ public class CustomerOrder implements Model {
   @Column(name = "order_date", nullable=false)
   private LocalDateTime orderDate;
 
+  @Column(name = "shipment_type")
+  @Enumerated(EnumType.STRING)
+  private ShipmentType shipmentType;
+
   @Column(name = "notes")
   private String notes;
-
 
   @Override
   public CustomerOrderDTO toDto() {
@@ -45,6 +48,7 @@ public class CustomerOrder implements Model {
         .builder()
         .id(numberToString(id))
         .orderDate(localDateTimeToString(orderDate))
+        .shipmentType(shipmentTypeToString(shipmentType))
         .notes(notes)
         .build();
   }

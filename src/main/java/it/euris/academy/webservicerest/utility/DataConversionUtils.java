@@ -1,5 +1,7 @@
 package it.euris.academy.webservicerest.utility;
 
+import it.euris.academy.webservicerest.data.enums.ShipmentType;
+
 import java.time.LocalDateTime;
 
 public class DataConversionUtils {
@@ -21,5 +23,18 @@ public class DataConversionUtils {
   public static String localDateTimeToString(LocalDateTime value){
     return value == null ? null : value.toString();
   }
+
+  public static ShipmentType stringToShipmentType(String value) {
+    for(ShipmentType shipmentTypeValue : ShipmentType.values()){
+      if (shipmentTypeValue.name().equalsIgnoreCase(value))
+        return shipmentTypeValue;
+    }
+    return null;
+  }
+
+  public static String shipmentTypeToString(ShipmentType value) {
+    return value== null ? null : value.name();
+  }
+
 
 }
