@@ -1,6 +1,7 @@
 package it.euris.academy.webservicerest.data.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import it.euris.academy.webservicerest.data.dto.OrderDetailDTO;
 import it.euris.academy.webservicerest.data.dto.archetype.Dto;
 import it.euris.academy.webservicerest.data.dto.archetype.Model;
 import it.euris.academy.webservicerest.data.entity.key.OrderDetailKey;
@@ -37,7 +38,11 @@ public class OrderDetail implements Model {
   private String notes;
 
   @Override
-  public Dto toDto() {
-    return null;
+  public OrderDetailDTO toDto() {
+    return OrderDetailDTO
+        .builder()
+        .customerOrderId(customerOrder==null ? null : customerOrder.getId().toString())
+        .productId(product==null ? null : product.getId().toString())
+        .build();
   }
 }
