@@ -8,6 +8,7 @@ import lombok.*;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.List;
 
 @Builder
 @Getter
@@ -35,10 +36,10 @@ public class Product implements Model {
   @Column(name = "in_stock")
   private Boolean inStock = true;
 
-//  @OneToMany(mappedBy = "product", fetch = FetchType.EAGER)
-//  @JsonIgnore
-//  @Builder.Default
-//  private List<OrderDetail> orderDetails = new ArrayList<>();
+  @OneToMany(mappedBy = "product", fetch = FetchType.EAGER)
+  @JsonIgnore
+  @Builder.Default
+  private List<OrderDetail> orderDetails = new ArrayList<>();
 
   @Override
   public Dto toDto() {

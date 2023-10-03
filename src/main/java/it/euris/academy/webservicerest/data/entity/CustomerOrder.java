@@ -42,6 +42,11 @@ public class CustomerOrder implements Model {
   @Column(name = "notes")
   private String notes;
 
+  @OneToMany(mappedBy = "customerOrder", fetch = FetchType.EAGER)
+  @JsonIgnore
+  @Builder.Default
+  private List<OrderDetail> orderDetails = new ArrayList<>();
+
   @Override
   public CustomerOrderDTO toDto() {
     return CustomerOrderDTO
