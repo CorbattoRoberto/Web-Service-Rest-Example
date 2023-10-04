@@ -2,6 +2,7 @@ package it.euris.academy.webservicerest.data.dto;
 
 import it.euris.academy.webservicerest.data.dto.archetype.Dto;
 import it.euris.academy.webservicerest.data.entity.CustomerOrder;
+import it.euris.academy.webservicerest.utility.EntityUtils;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,6 +18,8 @@ public class CustomerOrderDTO implements Dto {
 
   private String id;
 
+  private String customerId;
+
   private String orderDate;
 
   private String shipmentType;
@@ -28,6 +31,7 @@ public class CustomerOrderDTO implements Dto {
     return CustomerOrder
         .builder()
         .id(stringToInteger(id))
+        .customer(EntityUtils.getCustomer(stringToInteger(customerId)))
         .orderDate(stringToLocalDateTime(orderDate))
         .shipmentType(stringToShipmentType(shipmentType))
         .notes(notes)

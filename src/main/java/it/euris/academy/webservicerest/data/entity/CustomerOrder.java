@@ -1,6 +1,5 @@
 package it.euris.academy.webservicerest.data.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import it.euris.academy.webservicerest.data.dto.CustomerOrderDTO;
 import it.euris.academy.webservicerest.data.dto.archetype.Model;
@@ -52,6 +51,7 @@ public class CustomerOrder implements Model {
     return CustomerOrderDTO
         .builder()
         .id(numberToString(id))
+        .customerId(numberToString(customer.getId()))
         .orderDate(localDateTimeToString(orderDate))
         .shipmentType(shipmentTypeToString(shipmentType))
         .notes(notes)
