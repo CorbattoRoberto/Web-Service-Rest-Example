@@ -52,6 +52,7 @@ public class CustomerOrder implements Model {
     return CustomerOrderDTO
         .builder()
         .id(numberToString(id))
+        .customerId(numberToString(customer.getId()))
         .orderDate(localDateTimeToString(orderDate))
         .shipmentType(shipmentTypeToString(shipmentType))
         .notes(notes)
