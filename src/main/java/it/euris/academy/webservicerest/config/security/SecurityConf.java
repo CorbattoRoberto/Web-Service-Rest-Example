@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -33,11 +34,16 @@ public class SecurityConf {
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
     http
-        .authorizeHttpRequests((authorize) ->
-            authorize
-                .requestMatchers(whiteList.getUrls()).permitAll()
-                .requestMatchers(HttpMethod.GET,"/").permitAll()
-                .anyRequest().authenticated()
+        .csrf(AbstractHttpConfigurer::disable)
+        .authorizeHttpRequests((authorize) -> authorize
+            .requestMatchers(whiteList.getUrls()).permitAll()
+            .requestMatchers(HttpMethod.GET,"/").permitAll()
+            .requestMatchers(HttpMethod.GET,"/customers/**").permitAll()
+            .requestMatchers("/customers/**").hasRole(UserRole.MANAGER.toString())
+            .requestMatchers("/orders/**").hasAnyRole(
+                UserRole.MANAGER.toString(),
+                UserRole.USER.toString())
+            .anyRequest().authenticated()
         )
         .httpBasic(withDefaults());
 
