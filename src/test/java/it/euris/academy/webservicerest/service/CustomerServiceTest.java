@@ -4,10 +4,15 @@ import it.euris.academy.webservicerest.data.entity.Customer;
 import it.euris.academy.webservicerest.exception.IdMustBeNullException;
 import it.euris.academy.webservicerest.exception.IdMustNotBeNullException;
 import it.euris.academy.webservicerest.repository.CustomerRepository;
+import it.euris.academy.webservicerest.service.impl.CustomerServiceImpl;
 import it.euris.academy.webservicerest.utility.TestSupport;
 import org.assertj.core.api.recursive.comparison.ComparingSnakeOrCamelCaseFields;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -24,14 +29,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
-@SpringBootTest
+@ExtendWith(MockitoExtension.class)
 class CustomerServiceTest {
 
-  @MockBean
+  @Mock
   CustomerRepository customerRepository;
 
-  @Autowired
-  CustomerService customerService;
+  @InjectMocks
+  CustomerServiceImpl customerService;
 
   @Test
   void shouldReturnACustomer(){
@@ -68,7 +73,7 @@ class CustomerServiceTest {
   void shouldNotInsertAnyCustomer(){
 
     Customer customer = TestSupport.getCustomer(1);
-    when(customerRepository.save(any())).thenReturn(customer);
+    lenient().when(customerRepository.save(any())).thenReturn(customer);
 
     assertThrows(IdMustBeNullException.class, () -> customerService.insert(customer));
 
@@ -93,7 +98,7 @@ class CustomerServiceTest {
   void shouldNotUpdateAnyCustomer(){
 
     Customer customer = TestSupport.getCustomer(null);
-    when(customerRepository.save(any())).thenReturn(customer);
+    lenient().when(customerRepository.save(any())).thenReturn(customer);
 
     assertThatThrownBy(() -> customerService.update(customer))
         .isInstanceOf(IdMustNotBeNullException.class);

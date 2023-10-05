@@ -4,13 +4,19 @@ import it.euris.academy.webservicerest.data.entity.CustomerOrder;
 import it.euris.academy.webservicerest.exception.IdMustBeNullException;
 import it.euris.academy.webservicerest.exception.IdMustNotBeNullException;
 import it.euris.academy.webservicerest.repository.CustomerOrderRepository;
+import it.euris.academy.webservicerest.service.impl.CustomerOrderServiceImpl;
 import it.euris.academy.webservicerest.utility.TestSupport;
 import org.assertj.core.api.recursive.comparison.ComparingSnakeOrCamelCaseFields;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+
 
 import java.util.List;
 import java.util.Optional;
@@ -22,20 +28,20 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
-@SpringBootTest
+
+@ExtendWith(MockitoExtension.class)
 class CustomerOrderServiceTest {
 
-  @Autowired
-  CustomerOrderService customerOrderService;
+  @InjectMocks
+  CustomerOrderServiceImpl customerOrderService;
 
-  @MockBean
+  @Mock
   CustomerOrderRepository customerOrderRepository;
 
   @Test
   void shouldReturnACustomerOrder(){
 
     CustomerOrder customerOrder = TestSupport.getCustomerOrder(1);
-
     List<CustomerOrder> customerOrders = List.of(customerOrder);
 
     when(customerOrderRepository.findAll()).thenReturn(customerOrders);
@@ -65,7 +71,8 @@ class CustomerOrderServiceTest {
   void shouldNotInsertAnyCustomer(){
 
     CustomerOrder customerOrder = TestSupport.getCustomerOrder(1);
-    when(customerOrderRepository.save(any())).thenReturn(customerOrder);
+
+    lenient().when(customerOrderRepository.save(any())).thenReturn(customerOrder);
 
     assertThrows(IdMustBeNullException.class, () -> customerOrderService.insert(customerOrder));
 
@@ -90,7 +97,7 @@ class CustomerOrderServiceTest {
   void shouldNotUpdateAnyCustomer(){
 
     CustomerOrder customerOrder = TestSupport.getCustomerOrder(null);
-    when(customerOrderRepository.save(any())).thenReturn(customerOrder);
+    lenient().when(customerOrderRepository.save(any())).thenReturn(customerOrder);
 
     assertThatThrownBy(() -> customerOrderService.update(customerOrder))
         .isInstanceOf(IdMustNotBeNullException.class);
