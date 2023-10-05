@@ -1,17 +1,23 @@
 package it.euris.academy.webservicerest.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import it.euris.academy.webservicerest.config.security.SecurityConf;
 import it.euris.academy.webservicerest.data.entity.Customer;
 import it.euris.academy.webservicerest.service.CustomerService;
 import it.euris.academy.webservicerest.utility.TestSupport;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Import;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import java.util.Base64;
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
@@ -22,7 +28,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 
-@WebMvcTest(CustomerController.class)
+@SpringBootTest
+@AutoConfigureMockMvc
+@Import(value = { SecurityConf.class })
 class CustomerControllerTest {
 
   @Autowired
@@ -59,7 +67,10 @@ class CustomerControllerTest {
 
     when(customerService.insert(any())).thenReturn(customer);
 
+    String auth = Base64.getEncoder().encodeToString(("academy:academy").getBytes());
+
     mockMvc.perform(post("/customers/v1")
+            .header(HttpHeaders.AUTHORIZATION, "Basic " + auth)
             .contentType(MediaType.APPLICATION_JSON)
             .accept(MediaType.APPLICATION_JSON)
             .content(objectMapper.writeValueAsString(customer.toDto())))
@@ -68,6 +79,24 @@ class CustomerControllerTest {
         .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
         .andExpect(jsonPath("$.firstName").value(customer.getFirstName()))
         .andExpect(jsonPath("$.lastName").value(customer.getLastName()));
+  }
+
+  @Test
+  void shouldReturnForbiddenWhenUserAuthenticated() throws Exception {
+
+    Customer customer = TestSupport.getCustomer(1);
+
+    when(customerService.insert(any())).thenReturn(customer);
+
+    String auth = Base64.getEncoder().encodeToString(("user:user").getBytes());
+
+    mockMvc.perform(post("/customers/v1")
+            .header(HttpHeaders.AUTHORIZATION, "Basic " + auth)
+            .contentType(MediaType.APPLICATION_JSON)
+            .accept(MediaType.APPLICATION_JSON)
+            .content(objectMapper.writeValueAsString(customer.toDto())))
+        .andDo(print())
+        .andExpect(status().isForbidden());
   }
 
 }
