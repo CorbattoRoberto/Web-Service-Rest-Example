@@ -1,6 +1,7 @@
 package it.euris.academy.webservicerest.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import it.euris.academy.webservicerest.data.dto.CustomerDTO;
 import it.euris.academy.webservicerest.data.entity.Customer;
 import it.euris.academy.webservicerest.exception.IdMustBeNullException;
@@ -16,6 +17,7 @@ import java.util.List;
 @AllArgsConstructor
 @RestController
 @RequestMapping("/customers")
+@SecurityRequirement(name = "authentication")
 public class CustomerController {
 
   CustomerService customerService;

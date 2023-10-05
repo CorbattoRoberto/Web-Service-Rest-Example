@@ -11,12 +11,19 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @Configuration
 public class SecurityConf {
 
+  private final WhiteListConfiguration whiteList;
+
+  public SecurityConf(WhiteListConfiguration whiteList) {
+    this.whiteList = whiteList;
+  }
+
   @Bean
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
     http
         .authorizeHttpRequests((authorize) ->
             authorize
+                .requestMatchers(whiteList.getUrls()).permitAll()
                 .requestMatchers(HttpMethod.GET,"/").permitAll()
                 .anyRequest().authenticated()
         )
