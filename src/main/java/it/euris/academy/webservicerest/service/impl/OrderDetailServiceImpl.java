@@ -39,6 +39,7 @@ public class OrderDetailServiceImpl implements OrderDetailService {
 
   @Override
   public OrderDetail findById(Integer orderId, Integer productId) {
-    return null;
+    OrderDetailKey orderDetailIdKey = new OrderDetailKey(orderId, productId);
+    return orderDetailRepository.findById(orderDetailIdKey).orElse(OrderDetail.builder().build());
   }
 }

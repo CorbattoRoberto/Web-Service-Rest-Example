@@ -33,4 +33,12 @@ public class OrderDetailController {
     }
   }
 
+  @GetMapping("/v1/{order-id}-{product-id}")
+  public OrderDetailDTO findById(@PathVariable("order-id") Integer orderId,
+      @PathVariable("product-id") Integer productId) {
+
+    return orderDetailService.findById(orderId,productId).toDto();
+  }
+
+
 }
