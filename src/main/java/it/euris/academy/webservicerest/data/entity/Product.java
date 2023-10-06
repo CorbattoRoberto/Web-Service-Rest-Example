@@ -6,6 +6,8 @@ import it.euris.academy.webservicerest.data.dto.archetype.Dto;
 import it.euris.academy.webservicerest.data.dto.archetype.Model;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -20,6 +22,8 @@ import static it.euris.academy.webservicerest.utility.DataConversionUtils.*;
 @AllArgsConstructor
 @Entity
 @Table(name = "product")
+@SQLDelete(sql = "UPDATE product SET deleted = true WHERE id=?")
+@Where(clause = "deleted=false")
 public class Product implements Model {
 
   @Id

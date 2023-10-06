@@ -41,5 +41,9 @@ public class ProductServiceImpl implements ProductService {
   public Boolean deleteById(Integer idProduct) {
     productRepository.deleteById(idProduct);
     return productRepository.findById(idProduct).isEmpty();
+
+//    productRepository.logicalDelete(idProduct);
+//    return productRepository.findById(idProduct).get().getDeleted();
+
   }
 }
