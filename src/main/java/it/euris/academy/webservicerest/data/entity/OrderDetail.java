@@ -8,6 +8,8 @@ import it.euris.academy.webservicerest.data.entity.key.OrderDetailKey;
 import jakarta.persistence.*;
 import lombok.*;
 
+import static it.euris.academy.webservicerest.utility.DataConversionUtils.numberToString;
+
 @Builder
 @Getter
 @Setter
@@ -43,6 +45,8 @@ public class OrderDetail implements Model {
         .builder()
         .customerOrderId(customerOrder==null ? null : customerOrder.getId().toString())
         .productId(product==null ? null : product.getId().toString())
+        .itemNumber(numberToString(itemNumber))
+        .notes(notes)
         .build();
   }
 }

@@ -35,6 +35,8 @@ public class OrderDetailDTO implements Dto {
         .id(new OrderDetailKey(stringToInteger(customerOrderId), stringToInteger(productId)))
         .customerOrder(CustomerOrder.builder().id(stringToInteger(customerOrderId)).build())
         .product(Product.builder().id(stringToInteger(productId)).build())
+        .itemNumber(stringToInteger(itemNumber))
+        .notes(notes)
         .build();
   }
 }
