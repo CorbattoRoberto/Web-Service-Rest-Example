@@ -2,7 +2,6 @@ package it.euris.academy.webservicerest.data.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import it.euris.academy.webservicerest.data.dto.ProductDTO;
-import it.euris.academy.webservicerest.data.dto.archetype.Dto;
 import it.euris.academy.webservicerest.data.dto.archetype.Model;
 import jakarta.persistence.*;
 import lombok.*;
