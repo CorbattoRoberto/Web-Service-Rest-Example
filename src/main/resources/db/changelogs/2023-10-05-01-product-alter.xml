@@ -14,7 +14,7 @@
         </preConditions>
         <comment>customer order alter add shipment_type</comment>
         <addColumn tableName="product">
-            <column name="deleted" type="BOOLEAN" defaultValueBoolean="true"/>
+            <column name="deleted" type="BOOLEAN" defaultValueBoolean="false"/>
         </addColumn>
     </changeSet>
 
