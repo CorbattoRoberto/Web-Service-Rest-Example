@@ -5,6 +5,7 @@ import it.euris.academy.webservicerest.data.dto.ProductDTO;
 import it.euris.academy.webservicerest.data.entity.Product;
 import it.euris.academy.webservicerest.exception.IdMustBeNullException;
 import it.euris.academy.webservicerest.exception.IdMustNotBeNullException;
+import it.euris.academy.webservicerest.repository.projection.ProductCountProjection;
 import it.euris.academy.webservicerest.service.ProductService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -54,6 +55,11 @@ public class ProductController {
   public Boolean deleteCustomer(@PathVariable("id") Integer id)
   {
     return productService.deleteById(id);
+  }
+
+  @GetMapping("/v1/count")
+  public ProductCountProjection getCount() {
+    return productService.getCount();
   }
 
 }

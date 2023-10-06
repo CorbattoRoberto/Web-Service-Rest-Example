@@ -4,6 +4,7 @@ import it.euris.academy.webservicerest.data.entity.Product;
 import it.euris.academy.webservicerest.exception.IdMustBeNullException;
 import it.euris.academy.webservicerest.exception.IdMustNotBeNullException;
 import it.euris.academy.webservicerest.repository.ProductRepository;
+import it.euris.academy.webservicerest.repository.projection.ProductCountProjection;
 import it.euris.academy.webservicerest.service.ProductService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -45,5 +46,10 @@ public class ProductServiceImpl implements ProductService {
 //    productRepository.logicalDelete(idProduct);
 //    return productRepository.findById(idProduct).get().getDeleted();
 
+  }
+
+  @Override
+  public ProductCountProjection getCount() {
+    return productRepository.getCount();
   }
 }
