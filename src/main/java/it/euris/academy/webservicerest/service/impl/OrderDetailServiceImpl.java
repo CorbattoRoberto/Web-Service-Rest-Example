@@ -2,6 +2,7 @@ package it.euris.academy.webservicerest.service.impl;
 
 import it.euris.academy.webservicerest.data.entity.OrderDetail;
 import it.euris.academy.webservicerest.data.entity.key.OrderDetailKey;
+import it.euris.academy.webservicerest.exception.IdMustNotBeNullException;
 import it.euris.academy.webservicerest.repository.OrderDetailRepository;
 import it.euris.academy.webservicerest.service.OrderDetailService;
 import lombok.AllArgsConstructor;
@@ -22,7 +23,13 @@ public class OrderDetailServiceImpl implements OrderDetailService {
 
   @Override
   public OrderDetail insert(OrderDetail orderDetail) {
-    return null;
+    if(orderDetail.getId().getOrderId() == null) {
+      throw new IdMustNotBeNullException();
+    }
+    if(orderDetail.getId().getProductId() == null) {
+      throw new IdMustNotBeNullException();
+    }
+    return orderDetailRepository.save(orderDetail);
   }
 
   @Override

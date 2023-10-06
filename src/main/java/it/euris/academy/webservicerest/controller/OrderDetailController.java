@@ -2,11 +2,12 @@ package it.euris.academy.webservicerest.controller;
 
 import it.euris.academy.webservicerest.data.dto.OrderDetailDTO;
 import it.euris.academy.webservicerest.data.entity.OrderDetail;
+import it.euris.academy.webservicerest.exception.IdMustNotBeNullException;
 import it.euris.academy.webservicerest.service.OrderDetailService;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -22,5 +23,14 @@ public class OrderDetailController {
     return orderDetailService.findAll().stream().map(OrderDetail::toDto).toList();
   }
 
+  @PostMapping("/v1")
+  public OrderDetailDTO insert(@RequestBody OrderDetailDTO orderDetailDTO) {
+    try {
+      return orderDetailService.insert(orderDetailDTO.toModel()).toDto();
+    }
+    catch(IdMustNotBeNullException e) {
+      throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+    }
+  }
 
 }
