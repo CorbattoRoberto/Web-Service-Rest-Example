@@ -2,6 +2,7 @@ package it.euris.academy.webservicerest.utility;
 
 import it.euris.academy.webservicerest.data.enums.ShipmentType;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public class DataConversionUtils {
@@ -32,9 +33,24 @@ public class DataConversionUtils {
     return null;
   }
 
+  public static BigDecimal stringToBigDecimal(String value){
+    return value == null ? null : new BigDecimal(value);
+  }
+
+  public static String bigDecimalToString(BigDecimal value){
+    return value == null ? null : value.toString();
+  }
+
+  public static Boolean stringToBoolean(String value){
+    return value == null ? null : Boolean.valueOf(value);
+  }
+
+  public static String booleanToString(Boolean value){
+    return value == null ? null : value.toString();
+  }
+
   public static String shipmentTypeToString(ShipmentType value) {
     return value== null ? null : value.name();
   }
-
 
 }

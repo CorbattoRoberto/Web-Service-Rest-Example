@@ -8,4 +8,10 @@ public interface ProductService {
 
   public List<Product> findAll();
 
+  Product insert(Product product);
+
+  Product update(Product product);
+
+  Boolean deleteById(Integer id);
+
 }
