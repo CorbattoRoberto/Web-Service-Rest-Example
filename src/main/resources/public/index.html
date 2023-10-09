@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+      <meta charset="UTF-8">
+      <title>Title della nostra pagina</title>
+  </head>
+
+  <body>
+
+    <!--Esempio di header-->
+    <div id="header">
+      <h1>Titolo del Sito</h1>
+      <h2>Titolo del Sito</h2>
+      <h3>Titolo del Sito</h3>
+    </div>
+
+    <!--Esempio di div-->
+    <div>
+      Body della pagina
+      <br>
+      Scritta a capo
+    </div>
+    <div>
+      Altra scritta
+    </div>
+    <br>
+    <!--Esempio di table-->
+    <table border="2">
+      <caption>Elenco dei prodotti</caption>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nome Prodotto</th>
+          <th>Prezzo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Prodotto A</td>
+          <td>$19.99</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Prodotto B</td>
+          <td>$29.99</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Prodotto C</td>
+          <td>$39.99</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <br>
+
+    <form id="formexample">
+      <table border = "1">
+        <tr>
+          <td><label for="nome">Nome:</label></td>
+          <td><input type="text" id="nome" name="nome"></td>
+        </tr>
+        <tr>
+          <td><label for="commento">Commento:</label></td>
+          <td><textarea id="commento" name="commento" rows="4" cols="50"></textarea></td>
+        </tr>
+        <tr>
+          <td><label for="scelta">Scelta:</label></td>
+          <td>
+            <select id="scelta" name="scelta">
+              <option value="opzione1">Opzione 1</option>
+              <option value="opzione2">Opzione 2</option>
+              <option value="opzione3">Opzione 3</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2"><button type="submit">Invia</button></td>
+        </tr>
+      </table>
+    </form>
+  </body>
+</html>
