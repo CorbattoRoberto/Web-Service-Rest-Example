@@ -13,6 +13,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.filter.CorsFilter;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
@@ -21,8 +23,11 @@ public class SecurityConf {
 
   private final WhiteListConfiguration whiteList;
 
-  public SecurityConf(WhiteListConfiguration whiteList) {
+  private final CorsFilter corsFilter;
+
+  public SecurityConf(WhiteListConfiguration whiteList, CorsFilter corsFilter) {
     this.whiteList = whiteList;
+    this.corsFilter = corsFilter;
   }
 
   @Bean
@@ -35,6 +40,7 @@ public class SecurityConf {
 
     http
         .csrf(AbstractHttpConfigurer::disable)
+        .addFilterBefore(corsFilter, UsernamePasswordAuthenticationFilter.class)
         .authorizeHttpRequests((authorize) -> authorize
             .requestMatchers(whiteList.getUrls()).permitAll()
             .requestMatchers(HttpMethod.GET,"/").permitAll()
@@ -45,8 +51,8 @@ public class SecurityConf {
                 UserRole.USER.toString())
             .anyRequest().authenticated()
         )
-        .httpBasic(withDefaults());
-
+        .httpBasic(withDefaults())
+        .formLogin(withDefaults());
     return http.build();
   }
 

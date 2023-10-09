@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class ApplicationController {
 
   @ResponseBody
-  @RequestMapping(value = "/", method = RequestMethod.GET)
+  @RequestMapping(value = "/alive", method = RequestMethod.GET)
   public String isAlive() {
 
     return "I'm alive!";
