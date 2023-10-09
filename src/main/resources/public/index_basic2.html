@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Esempio</title>
+    <link rel="stylesheet" href="css/indexbase.css">
+</head>
+    <body>
+        <form id="formexamplecss">
+            <div class="form-container">
+                <div class="form-group">
+                    <label for="nome2">Nome:</label>
+                    <input type="text" id="nome2" name="nome">
+                </div>
+                <div class="form-group">
+                    <label for="commento2">Commento:</label>
+                    <textarea id="commento2" name="commento" rows="4" cols="50"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="scelta2">Scelta:</label>
+                    <select id="scelta2" name="scelta">
+                        <option value="opzione1">Opzione 1</option>
+                        <option value="opzione2">Opzione 2</option>
+                        <option value="opzione3">Opzione 3</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <button type="submit">Invia</button>
+                </div>
+            </div>
+        </form>
+
+
+        <h1>Benvenuto!</h1>
+        <p>Questo è un esempio di utilizzo del DOM.</p>
+        <button id="cambiaTesto">Cambia Testo</button>
+
+        <script>
+            // Seleziona l'elemento del paragrafo utilizzando il DOM
+            var paragrafo = document.querySelector("p");
+
+            // Seleziona il pulsante utilizzando il DOM
+            var pulsante = document.getElementById("cambiaTesto");
+
+            // Aggiungi un gestore di eventi al pulsante per cambiare il testo del paragrafo
+            pulsante.addEventListener("click", function() {
+                paragrafo.textContent = "Il testo è stato cambiato!";
+            });
+        </script>
+
+    </body>
+</html>
