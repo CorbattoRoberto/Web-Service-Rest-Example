@@ -23,7 +23,7 @@ public class CustomerServiceImpl implements CustomerService {
 
   @Override
   public Customer insert(Customer customer) {
-    if(customer.getId() != null){
+    if(customer.getId() != null && customer.getId() > 0) {
       throw new IdMustBeNullException();
     }
     return customerRepository.save(customer);
@@ -31,7 +31,7 @@ public class CustomerServiceImpl implements CustomerService {
 
   @Override
   public Customer update(Customer customer) {
-    if(customer.getId() == null){
+    if(customer.getId() == null || customer.getId() == 0) {
       throw new IdMustNotBeNullException();
     }
     return customerRepository.save(customer);

@@ -1,0 +1,56 @@
+
+.material-symbols-outlined {
+    cursor: pointer; /* Cambia il cursore in un cursore a mano quando si passa sopra l'elemento */
+}
+
+.tableCustomers {
+  border-collapse: collapse; /* Unisce i bordi delle celle */
+}
+
+.tableCustomers th {
+  border: 1px solid #000; /* Colore e spessore del bordo */
+  padding: 8px; /* Spazio interno delle celle */
+}
+
+.tableCustomers td {
+  border: 1px solid #000; /* Colore e spessore del bordo */
+  padding: 8px; /* Spazio interno delle celle */
+}
+
+.form-container {
+  max-width: 400px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+}
+
+input[type="text"],
+textarea,
+select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button[type="submit"] {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3;
+}
