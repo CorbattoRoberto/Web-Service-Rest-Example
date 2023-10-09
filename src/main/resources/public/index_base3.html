@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Esempio AJAX con jQuery</title>
+        <!-- Includi jQuery dalla CDN di Google -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="css/indexbase.css">
+    </head>
+    <body>
+
+<!--
+    <script>
+            $.ajax({
+                url: 'URL_del_server',       // URL del server o dell'endpoint
+                method: 'GET',               // Metodo HTTP (GET, POST, PUT, DELETE, ecc.)
+                dataType: 'json',            // Tipo di dati atteso nella risposta (json, xml, html, text, ecc.)
+                data: {                      // Dati da inviare al server (facoltativo)
+                    param1: 'valore1',
+                    param2: 'valore2'
+                },
+                success: function(response) {
+                    // Funzione da eseguire in caso di successo
+                    console.log('Risposta dal server:', response);
+                },
+                error: function(xhr, status, error) {
+                    // Funzione da eseguire in caso di errore
+                    console.error('Errore nella richiesta:', status, error);
+                }
+            });
+    </script>
+-->
+
+        <script>
+            $(document).ready(function() {
+                // Gestisci il clic sul pulsante
+                $("#caricaDati").click(function() {
+                    // Effettua una richiesta AJAX GET all'endpoint dell'API JSONPlaceholder
+                    $.ajax({
+                        url: "https://jsonplaceholder.typicode.com/users/1", // URL dell'endpoint REST
+                        method: "GET", // Metodo HTTP GET
+                        dataType: "json", // Tipo di dati atteso nella risposta
+                        success: function(data) {
+                            // Gestisci la risposta di successo
+                            $("#risultato").html("<p>ID: " + data.id + "</p><p>Nome: " + data.name + "</p><p>Email: " + data.email + "</p>");
+                        },
+                        error: function() {
+                            // Gestisci eventuali errori nella richiesta AJAX
+                            $("#risultato").html("Errore durante la richiesta.");
+                        }
+                    });
+                });
+            });
+        </script>
+
+        <h1>Dati Utente</h1>
+        <button id="caricaDati">Carica Dati Utente</button>
+        <div id="risultato"></div>
+
+    </body>
+</html>
