@@ -99,4 +99,19 @@ class CustomerControllerTest {
         .andExpect(status().isForbidden());
   }
 
+  @Test
+  void shouldReturnUnauthorizedWhenMissingUser() throws Exception {
+
+    Customer customer = TestSupport.getCustomer(1);
+
+    when(customerService.insert(any())).thenReturn(customer);
+
+    mockMvc.perform(post("/customers/v1")
+            .contentType(MediaType.APPLICATION_JSON)
+            .accept(MediaType.APPLICATION_JSON)
+            .content(objectMapper.writeValueAsString(customer.toDto())))
+        .andDo(print())
+        .andExpect(status().isUnauthorized());
+  }
+
 }

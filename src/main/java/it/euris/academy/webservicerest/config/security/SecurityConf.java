@@ -43,7 +43,7 @@ public class SecurityConf {
         .addFilterBefore(corsFilter, UsernamePasswordAuthenticationFilter.class)
         .authorizeHttpRequests((authorize) -> authorize
             .requestMatchers(whiteList.getUrls()).permitAll()
-            .requestMatchers(HttpMethod.GET,"/").permitAll()
+            .requestMatchers(HttpMethod.GET,"/alive").permitAll()
             .requestMatchers(HttpMethod.GET,"/customers/**").permitAll()
             .requestMatchers("/customers/**").hasRole(UserRole.MANAGER.toString())
             .requestMatchers("/orders/**").hasAnyRole(
